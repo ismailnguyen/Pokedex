@@ -6,8 +6,7 @@
 
     <div
       class="poke-preview"
-      :style="`background-image: url(${ pokemon.imageUrl })`"
-    ></div>
+      :style="`background-image: url(${ pokemon.imageUrl })`"></div>
     <div class="poke-info">
       <div class="title">
         {{ name }}
@@ -217,18 +216,34 @@
           <div class="stat-value">{{ getStat("defense") }}</div>
         </div>
       </div>
+
+      <div class="stat-graph">
+        <StatsChart
+          :hp="getStat('hp')"
+          :attack="getStat('attack')"
+          :defense="getStat('defense')"
+          :speed="getStat('speed')"
+          :height="pokemon.height"
+          :weight="pokemon.weight"
+        />
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import localforage from 'localforage'
+import StatsChart from '../components/StatsChart.vue'
 
 localforage.config({
     name: 'Pokedex'
 });
 
 export default {
+  components: {
+    StatsChart
+  },
   data() {
     return {
       pokemon: {}
