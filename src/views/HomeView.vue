@@ -2,15 +2,14 @@
   <SearchBar @search="onSearch" />
 
   <div class="flex flex-col px-4 gap-4">
-    <div class="loading-page" v-if="isLoading">
-      <span>Loading...</span>
-    </div>
+    <Loader v-if="isLoading" />
 
-    <PokemonList :pokemons="pokemonList" />
+    <PokemonList :pokemons="filteredPokemonList"  v-else />
   </div>
 </template>
 
 <script>
+import Loader from "../components/Loader.vue";
 import SearchBar from "../components/SearchBar.vue";
 import PokemonList from "../components/PokemonList.vue";
 
@@ -18,6 +17,7 @@ const TOTAL_POKEMON_TO_LOAD = 800;
 
 export default {
   components: {
+    Loader,
     SearchBar,
     PokemonList,
   },
@@ -25,16 +25,20 @@ export default {
     return {
       pokemonList: [],
       isLoading: true,
+      keyword: "",
     };
   },
   async mounted() {
     this.fetchPokemonList();
   },
+  computed: {
+    filteredPokemonList() {
+      return this.pokemonList.filter((pokemon) => pokemon.name.includes(this.keyword));
+    },
+  },
   methods: {
     onSearch(keyword) {
-      this.pokemonList = this.pokemonList.filter((pokemon) =>
-        pokemon.name.includes(keyword)
-      );
+      this.keyword = keyword;
     },
 
     async fetchPokemonList() {
