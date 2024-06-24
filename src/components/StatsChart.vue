@@ -1,6 +1,5 @@
 <template>
   <Radar
-    id="my-chart-id"
     :options="chartOptions"
     :data="chartData"
   />
@@ -32,18 +31,18 @@ ChartJS.register(
 export default {
   name: 'StatsChart',
   components: { Radar },
-  props: ['hp', 'attack', 'defense', 'speed', 'height', 'weight'],
+  props: ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'],
   data() {
     return {
       chartData: {
         label: '',
         labels: [
-            'HP', 
-            'Attack', 
-            'Defense',
-            'Speed',
-            'Height',
-            'Weight',
+            ['HP', `(${ this.hp })`],
+            ['Attack', `(${ this.attack })`],
+            ['Defense', `(${ this.defense })`],
+            ['Speed', `(${ this.speed })`],
+            ['Sp. Defense', `(${ this.specialDefense })`],
+            ['Sp. Attack', `(${ this.specialAttack })`],
         ],
         datasets: [{
             label: 'Stats',
@@ -52,8 +51,8 @@ export default {
                 parseInt(this.attack),
                 parseInt(this.defense),
                 parseInt(this.speed),
-                parseInt(this.height),
-                parseInt(this.weight),
+                parseInt(this.specialDefense),
+                parseInt(this.specialAttack),
             ],
             fill: true,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -72,7 +71,21 @@ export default {
         scales: {
             r: {
                 suggestedMin: 0,
-                suggestedMax: parseInt(this.hp)
+                // suggestedMin: Math.min(
+                //   parseInt(this.hp),
+                //   parseInt(this.attack),
+                //   parseInt(this.defense),
+                //   parseInt(this.speed),
+                //   parseInt(this.specialAttack),
+                //   parseInt(this.specialDefense)),
+
+                suggestedMax: Math.max(
+                  parseInt(this.hp),
+                  parseInt(this.attack),
+                  parseInt(this.defense),
+                  parseInt(this.speed),
+                  parseInt(this.specialAttack),
+                  parseInt(this.specialDefense))
             }
         },
       }

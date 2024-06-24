@@ -217,14 +217,14 @@
         </div>
       </div>
 
-      <div class="stat-graph">
+      <div class="stat-graph" v-if="pokemon && pokemon.height">
         <StatsChart
           :hp="getStat('hp')"
           :attack="getStat('attack')"
           :defense="getStat('defense')"
           :speed="getStat('speed')"
-          :height="pokemon.height"
-          :weight="pokemon.weight"
+          :specialAttack="getStat('special-attack')"
+          :specialDefense="getStat('special-defense')"
         />
       </div>
 
@@ -286,6 +286,8 @@ export default {
         if (foundPokemon) {
           this.pokemon = foundPokemon;
 
+          console.log(this.pokemon)
+
           if (!this.pokemon.species
             || !this.pokemon.species.genera
             || !this.pokemon.species.flavor_text_entries) {
@@ -295,7 +297,6 @@ export default {
         else {
           this.loadPokemonFromApi(pokemonNumber);
         }
-        
       });
     },
 
@@ -349,7 +350,7 @@ export default {
           await localforage.getItem('pokemons').then(async (pokemons) => {
             const pokemonIndex = pokemons.findIndex((p) => p.name == this.pokemon.name);
 
-            pokemons[pokemonIndex].species = this.pokemon.speciesDetail;
+            pokemons[pokemonIndex].speciesDetail = this.pokemon.speciesDetail;
             pokemons[pokemonIndex].description = this.pokemon.description;
 
             await localforage.setItem('pokemons', pokemons);
