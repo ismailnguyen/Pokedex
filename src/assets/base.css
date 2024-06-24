@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Pokedex;
+  src: url(/src/assets/PoetsenOne-Regular.ttf);
+}
+
+:root {
+  /* --foreground-rgb: 0, 0, 0; */
+  /* --background-start-rgb: 214, 219, 220; */
+  /* --background-end-rgb: 255, 255, 255; */
+  --water: #5090D6; 
+  --water-rgb: 80, 144, 214;
+  --dragon: #0B6DC3; 
+  --dragon-rgb: 11, 109, 195;
+  --electric: #F4D23C; 
+  --electric-rgb: 244, 210, 60;
+  --fairy: #EC8FE6; 
+  --fairy-rgb: 236, 143, 230;
+  --ghost: #5269AD; 
+  --ghost-rgb: 82, 105, 173;
+  --fire: #FF9D55; 
+  --fire-rgb: 255, 157, 85;
+  --ice: #73CEC0; 
+  --ice-rgb: 115, 206, 192;
+  --grass: #63BC5A; 
+  --grass-rgb: 99, 188, 90;
+  --bug: #91C12F; 
+  --bug-rgb: 145, 193, 47;
+  --fighting: #CE416B; 
+  --fighting-rgb: 206, 65, 107;
+  --normal: #919AA2; 
+  --normal-rgb: 145, 154, 162;
+  --dark: #5A5465; 
+  --dark-rgb: 90, 84, 101;
+  --metal: #5A8EA2; 
+  --metal-rgb: 90, 142, 162;
+  --stone: #C5B78C; 
+  --stone-rgb: 197, 183, 140;
+  --psychic: #FA7179; 
+  --psychic-rgb: 250, 113, 121;
+  --earth: #D97845; 
+  --earth-rgb: 217, 120, 69;
+  --poison: #B567CE; 
+  --poison-rgb: 181, 103, 206;
+  --flying: #89AAE3; 
+  --flying-rgb: 137, 170, 227;
+
+  --inanimate: #ddd; 
+  --inanimate-rgb: 200, 200, 200;
+}
