@@ -1,5 +1,5 @@
 <template>
-  <SearchBar @search="onSearch" />
+  <SearchBar @search="onSearch"  v-if="!isLoading" />
 
   <div class="flex flex-col px-4 gap-4">
     <Loader v-if="isLoading" />
