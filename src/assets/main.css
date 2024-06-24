@@ -529,13 +529,6 @@ body {
   }
 }
 
-/* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
-@media screen and (display-mode: standalone) {
-  #header {
-    top:.3rem !important;
-  }
-}
-
 .loading-page {
   background-image: url('/src/assets/loading-bg.jpg');
   background-size:cover;
