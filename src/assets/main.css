@@ -480,13 +480,6 @@ body {
     overflow-x:hidden;
 }
 
-/* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
-@media screen and (display-mode: standalone) {
-  body {
-    padding-top: 8rem;
-  }
-}
-
 .bg-pokeball {
   position:fixed;
   bottom:0;
