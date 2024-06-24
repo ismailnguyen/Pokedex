@@ -532,7 +532,7 @@ body {
 /* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
 @media screen and (display-mode: standalone) {
   #header {
-    top:2.5rem !important;
+    top:1rem !important;
   }
 }
 
