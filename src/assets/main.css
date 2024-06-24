@@ -476,9 +476,15 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    padding-top:80px;
-    /* padding-bottom:60px; */
+    padding-top: 5rem;
     overflow-x:hidden;
+}
+
+/* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
+@media screen and (display-mode: standalone) {
+  body {
+    padding-top: 8rem;
+  }
 }
 
 .bg-pokeball {
@@ -502,7 +508,7 @@ body {
   top:0;
   right:0;
   left:0;
-  background:#f1f1f1;
+  background: #D02434;
   z-index:100;
   
   .header-left {
@@ -520,6 +526,13 @@ body {
     top:0;
     left:250px;
     right:0;
+  }
+}
+
+/* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
+@media screen and (display-mode: standalone) {
+  #header {
+    padding-top: 2rem;
   }
 }
 
