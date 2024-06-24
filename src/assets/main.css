@@ -505,7 +505,7 @@ body {
 
 #header {
   position: fixed;
-  top:0;
+  top: 0;
   right:0;
   left:0;
   background: #D02434;
@@ -532,7 +532,7 @@ body {
 /* On standalone mode on mobile phone, the header is hidden by notch, so lower down content */
 @media screen and (display-mode: standalone) {
   #header {
-    padding-top: 2rem;
+    top:2.5rem !important;
   }
 }
 
