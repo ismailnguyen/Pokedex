@@ -12,12 +12,12 @@
       <div>
         <div
           class="inline-flex items-center gap-2 px-2 py-1 text-xs rounded-full mt-2 font-medium"
-          :class="`bg-${lowerCaseType}`"
+          :class="`bg-${ lowerCaseType }`"
         >
           <span
             class="inline-flex align-center content-center rounded-full w-3 h-3"
           >
-            <img :src="`./src/assets/${lowerCaseType}-icon.svg`" width="100%" />
+            <img :src="`./src/assets/${ lowerCaseType }-icon.svg`" width="100%" />
           </span>
           {{ firstType }}
         </div>
@@ -26,7 +26,7 @@
     <div class="flex-1 relative h-32">
       <div
         class="absolute bg-gray-200 rounded-xl bg-cover bg-center top-2 right-2 bottom-2 left-2"
-        :style="`background-image: url(${imageUrl})`"
+        :style="`background-image: url(${ pokemon.imageUrl })`"
       ></div>
     </div>
   </div>
@@ -49,16 +49,12 @@ export default {
     },
     lowerCaseType: function () {
       return this.firstType.toLowerCase();
-    },
-    imageUrl: function () {
-      return this.pokemon.sprites.other["official-artwork"].front_default;
-    },
+    }
   },
   methods: {
     capitalizeFirstLetter: function (string) {
       return string && string.charAt(0).toUpperCase() + string.slice(1);
     },
-
     pad(number) {
       return number.toString().padStart(3, "0");
     },

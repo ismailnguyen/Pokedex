@@ -9,11 +9,17 @@
 </template>
 
 <script>
+import localforage from 'localforage'
+
+localforage.config({
+    name: 'Pokedex'
+});
+
 import Loader from "../components/Loader.vue";
 import SearchBar from "../components/SearchBar.vue";
 import PokemonList from "../components/PokemonList.vue";
 
-const TOTAL_POKEMON_TO_LOAD = 800;
+const TOTAL_POKEMON_TO_LOAD = 1000;
 
 export default {
   components: {
@@ -29,11 +35,20 @@ export default {
     };
   },
   async mounted() {
-    this.fetchPokemonList();
+    this.pokemonList = await this.loadPokemonsFromCache();
+
+    if (this.pokemonList.length < TOTAL_POKEMON_TO_LOAD) {
+      this.pokemonList = await this.loadPokemonsFromApi();
+    }
+
+    this.isLoading = false;
   },
   computed: {
     filteredPokemonList() {
-      return this.pokemonList.filter((pokemon) => pokemon.name.includes(this.keyword));
+      return this.pokemonList
+              .sort((a, b) => a.id - b.id)
+              && this.pokemonList.filter((pokemon) => pokemon.name.includes(this.keyword)).sort((a, b) => a.id - b.id)
+              || [];
     },
   },
   methods: {
@@ -41,26 +56,35 @@ export default {
       this.keyword = keyword;
     },
 
-    async fetchPokemonList() {
-      fetch("https://pokeapi.co/api/v2/pokemon?limit=" + TOTAL_POKEMON_TO_LOAD)
-        .then((response) => response.json())
-        .then((allpokemon) => {
-          allpokemon.results.forEach((pokemon) => {
-            this.fetchPokemonData(pokemon);
-          });
-        });
+    pad(number) {
+      return number.toString().padStart(3, "0");
     },
 
-    async fetchPokemonData(pokemon) {
-      let url = pokemon.url;
-      fetch(url)
-        .then((response) => response.json())
-        .then((pokeData) => {
-          this.pokemonList.push(pokeData);
+    async loadPokemonsFromCache () {
+      return await localforage.getItem('pokemons') || [];
+    },
 
-          if (this.pokemonList.length === TOTAL_POKEMON_TO_LOAD) {
-            this.isLoading = false;
-          }
+    async loadPokemonsFromApi () {
+      return fetch("https://pokeapi.co/api/v2/pokemon?limit=" + TOTAL_POKEMON_TO_LOAD)
+        .then((response) => response.json())
+        .then(async ({ results }) => {
+          return Promise.all(results.map(this.fetchPokemonData))
+                  .then (async (allPokemons) => {
+                    await localforage.setItem('pokemons', allPokemons);
+
+                    return allPokemons;
+                  });
+      });
+    },
+
+    async fetchPokemonData({ url }) {
+      return fetch(url)
+        .then((response) => response.json())
+        .then(async (pokemon) => {
+          pokemon.spriteUrl = pokemon.sprites.front_default;
+          pokemon.imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${ this.pad(pokemon.id) }.png`;
+
+          return pokemon;
         });
     },
   },

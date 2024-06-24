@@ -6,7 +6,7 @@
 
     <div
       class="poke-preview"
-      :style="`background-image: url(${imageUrl})`"
+      :style="`background-image: url(${ pokemon.imageUrl })`"
     ></div>
     <div class="poke-info">
       <div class="title">
@@ -65,7 +65,7 @@
       </div>
 
       <div class="description">
-        {{ description }}
+        {{ pokemon.description }}
       </div>
 
       <div class="stats divide-y">
@@ -90,7 +90,7 @@
             </svg>
           </div>
           <div class="stat-attr w-24">Species</div>
-          <div class="stat-value">{{ species }}</div>
+          <div class="stat-value">{{ pokemon.speciesDetail }}</div>
         </div>
         <div class="stat p-2">
           <div class="stat-icon w-8">
@@ -222,16 +222,20 @@
 </template>
 
 <script>
+import localforage from 'localforage'
+
+localforage.config({
+    name: 'Pokedex'
+});
+
 export default {
   data() {
     return {
-      pokemon: {},
-      species: "",
-      description: "",
+      pokemon: {}
     };
   },
-  created() {
-    this.fetchPokemon(this.$route.params.id);
+  async created () {
+    await this.loadPokemon(this.$route.params.id);
   },
   computed: {
     name: function () {
@@ -246,30 +250,62 @@ export default {
     lowerCaseType: function () {
       return this.firstType && this.firstType.toLowerCase();
     },
-    imageUrl: function () {
-      return (
-        this.pokemon &&
-        this.pokemon.sprites &&
-        this.pokemon.sprites.other["official-artwork"].front_default
-      );
-    },
   },
   methods: {
+    pad(number) {
+      return number.toString().padStart(3, "0");
+    },
     capitalizeFirstLetter: function (string) {
       return string && string.charAt(0).toUpperCase() + string.slice(1);
     },
 
-    fetchPokemon(pokemonNumber) {
+    async loadPokemon(pokemonNumber) {
+      // retrieve pokemon from stored localforage
+      await localforage.getItem('pokemons').then((pokemons) => {
+        if (pokemons === null) {
+          pokemons = [];
+        }
+
+        let foundPokemon = pokemons.find((p) => p.id == pokemonNumber);
+
+        if (foundPokemon) {
+          this.pokemon = foundPokemon;
+
+          if (!this.pokemon.species
+            || !this.pokemon.species.genera
+            || !this.pokemon.species.flavor_text_entries) {
+            this.loadSpeciesFromApi(this.pokemon.species);
+          }
+        }
+        else {
+          this.loadPokemonFromApi(pokemonNumber);
+        }
+        
+      });
+    },
+
+    loadPokemonFromApi (pokemonNumber) {
       //Get number from route then fetch from pokeapi
       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`)
         .then((response) => response.json())
-        .then((data) => {
-          this.pokemon = data;
+        .then(async (pokemon) => {
+          pokemon.spriteUrl = pokemon.sprites.front_default;
+          pokemon.imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${ this.pad(pokemon.id) }.png`;
 
-          this.fetchSpecies();
+          this.pokemon = pokemon;
+
+          await localforage.getItem('pokemons').then(async (pokemons) => {
+            if (pokemons === null) {
+              pokemons = [];
+            }
+
+            pokemons.push(pokemon);
+
+            await localforage.setItem('pokemons', pokemons);
+          });
         });
     },
-
+  
     getStat(stat) {
       return (
         this.pokemon &&
@@ -278,17 +314,31 @@ export default {
       );
     },
 
-    fetchSpecies() {
-      fetch(this.pokemon.species.url)
+    loadSpeciesFromApi({ url }) {
+      fetch(url)
         .then((response) => response.json())
-        .then((data) => {
-          this.species = data.genera.find(
+        .then(async (data) => {
+          let speciesDetail = data.genera.find(
             (g) => g.language.name === "en"
           ).genus;
 
-          this.description = data.flavor_text_entries.find(
+          this.pokemon.speciesDetail = speciesDetail;
+
+          let description = data.flavor_text_entries.find(
             (g) => g.language.name === "en"
           ).flavor_text;
+
+          this.pokemon.description = description;
+
+          // Find this pokemon in 'pokemons' on localforage, and update species and description
+          await localforage.getItem('pokemons').then(async (pokemons) => {
+            const pokemonIndex = pokemons.findIndex((p) => p.name == this.pokemon.name);
+
+            pokemons[pokemonIndex].species = this.pokemon.speciesDetail;
+            pokemons[pokemonIndex].description = this.pokemon.description;
+
+            await localforage.setItem('pokemons', pokemons);
+          });
         });
     },
   },
