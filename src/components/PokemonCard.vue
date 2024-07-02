@@ -17,7 +17,7 @@
           <span
             class="inline-flex align-center content-center rounded-full w-3 h-3"
           >
-            <img :src="`./src/assets/${ lowerCaseType }-icon.svg`" width="100%" />
+            <img :src="`/images/${ lowerCaseType }-icon.svg`" width="100%" />
           </span>
           {{ firstType }}
         </div>

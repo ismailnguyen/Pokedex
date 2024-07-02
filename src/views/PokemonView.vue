@@ -19,7 +19,7 @@
         <span
           class="inline-flex align-center content-center rounded-full w-4 h-6"
         >
-          <img :src="`../src/assets/${firstType}-icon.svg`" width="100%" />
+          <img :src="`../images/${firstType}-icon.svg`" width="100%" />
         </span>
         {{ firstType }}
       </div>
@@ -305,8 +305,8 @@ export default {
       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`)
         .then((response) => response.json())
         .then(async (pokemon) => {
-          pokemon.spriteUrl = pokemon.sprites.front_default;
-          pokemon.imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${ this.pad(pokemon.id) }.png`;
+          // pokemon.imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${ this.pad(pokemon.id) }.png`;
+          pokemon.imageUrl = sprites.other['official-artwork'].front_default;
 
           this.pokemon = pokemon;
 
