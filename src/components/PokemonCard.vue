@@ -51,7 +51,7 @@ export default {
       return this.firstType.toLowerCase();
     },
     imageUrl: function () {
-      return `/images/sprites/thumbnails/${ this.pad(this.pokemon.id) }.png`;
+      return `/images/sprites/${ this.pad(this.pokemon.id) }.png`;
     },
   },
   methods: {
