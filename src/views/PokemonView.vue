@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="text-center p-4" v-if="!pokemon">
-      <p>Loading...</p>
-    </div>
+    <Loader v-if="!pokemon" />
 
     <div
       class="poke-preview"
@@ -234,6 +232,7 @@
 
 <script>
 import localforage from 'localforage'
+import Loader from "../components/Loader.vue";
 import StatsChart from '../components/StatsChart.vue'
 
 localforage.config({
@@ -242,6 +241,7 @@ localforage.config({
 
 export default {
   components: {
+    Loader,
     StatsChart
   },
   data() {

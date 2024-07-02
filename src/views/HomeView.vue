@@ -65,11 +65,11 @@ export default {
         .then((response) => response.json())
         .then(async ({ results }) => {
           return Promise.all(results.map(this.fetchPokemonData))
-                  .then (async (allPokemons) => {
-                    await localforage.setItem('pokemons', allPokemons);
+            .then (async (allPokemons) => {
+              await localforage.setItem('pokemons', allPokemons);
 
-                    return allPokemons;
-                  });
+              return allPokemons;
+            });
       });
     },
 
