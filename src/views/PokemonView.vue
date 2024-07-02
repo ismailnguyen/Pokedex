@@ -6,7 +6,7 @@
 
     <div
       class="poke-preview"
-      :style="`background-image: url(${ pokemon.imageUrl })`"></div>
+      :style="`background-image: url(${ imageUrl })`"></div>
     <div class="poke-info">
       <div class="title">
         {{ name }}
@@ -256,7 +256,6 @@ export default {
     name: function () {
       return this.pokemon && this.capitalizeFirstLetter(this.pokemon.name);
     },
-
     firstType: function () {
       return (
         this.pokemon && this.pokemon.types && this.pokemon.types[0].type.name
@@ -264,6 +263,9 @@ export default {
     },
     lowerCaseType: function () {
       return this.firstType && this.firstType.toLowerCase();
+    },
+    imageUrl: function () {
+      return `/images/sprites/${ this.pad(this.pokemon.id) }.png`;
     },
   },
   methods: {
@@ -305,8 +307,6 @@ export default {
       fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`)
         .then((response) => response.json())
         .then(async (pokemon) => {
-          pokemon.imageUrl = `/images/sprites/${ this.pad(pokemon.id) }.png`;
-
           this.pokemon = pokemon;
 
           await localforage.getItem('pokemons').then(async (pokemons) => {

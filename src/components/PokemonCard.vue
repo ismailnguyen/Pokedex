@@ -26,7 +26,7 @@
     <div class="flex-1 relative h-32">
       <div
         class="absolute bg-gray-200 rounded-xl bg-cover bg-center top-2 right-2 bottom-2 left-2"
-        :style="`background-image: url(${ pokemon.imageUrl })`"
+        :style="`background-image: url(${ imageUrl })`"
       ></div>
     </div>
   </div>
@@ -49,7 +49,10 @@ export default {
     },
     lowerCaseType: function () {
       return this.firstType.toLowerCase();
-    }
+    },
+    imageUrl: function () {
+      return `/images/sprites/thumbnails/${ this.pad(this.pokemon.id) }.png`;
+    },
   },
   methods: {
     capitalizeFirstLetter: function (string) {

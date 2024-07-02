@@ -56,10 +56,6 @@ export default {
       this.keyword = keyword;
     },
 
-    pad(number) {
-      return number.toString().padStart(3, "0");
-    },
-
     async loadPokemonsFromCache () {
       return await localforage.getItem('pokemons') || [];
     },
@@ -79,13 +75,7 @@ export default {
 
     async fetchPokemonData({ url }) {
       return fetch(url)
-        .then((response) => response.json())
-        .then(async (pokemon) => {
-          pokemon.spriteUrl = pokemon.sprites.front_default;
-          pokemon.imageUrl = `/images/sprites/thumbnails/${ this.pad(pokemon.id) }.png`;
-
-          return pokemon;
-        });
+        .then((response) => response.json());
     },
   },
 };
