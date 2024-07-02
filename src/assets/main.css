@@ -337,7 +337,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/images/metal.svg');
+    background-image:url('/images/steel.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -357,7 +357,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/images/stone.svg');
+    background-image:url('/images/ground.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -486,7 +486,7 @@ body {
   right:0;
   left:0;
   top:0;
-  background-image:url('/src/assets/bg-pokeball.svg');
+  background-image:url('/images/bg-pokeball.svg');
   background-repeat:no-repeat;
   background-position:bottom right;
   -webkit-user-select:none;
