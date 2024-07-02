@@ -15,7 +15,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/inanimate.svg');
+    background-image:url('/src/assets/inanimate.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -96,7 +96,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/water.svg');
+    background-image:url('/src/assets/water.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -116,7 +116,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/dragon.svg');
+    background-image:url('/src/assets/dragon.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -136,7 +136,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/electric.svg');
+    background-image:url('/src/assets/electric.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -156,7 +156,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/fairy.svg');
+    background-image:url('/src/assets/fairy.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -176,7 +176,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/ghost.svg');
+    background-image:url('/src/assets/ghost.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -197,7 +197,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/fire.svg');
+    background-image:url('/src/assets/fire.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -217,7 +217,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/ice.svg');
+    background-image:url('/src/assets/ice.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -237,7 +237,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/grass.svg');
+    background-image:url('/src/assets/grass.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -257,7 +257,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/bug.svg');
+    background-image:url('/src/assets/bug.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -277,7 +277,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/fighting.svg');
+    background-image:url('/src/assets/fighting.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -297,7 +297,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/normal.svg');
+    background-image:url('/src/assets/normal.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -317,7 +317,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/dark.svg');
+    background-image:url('/src/assets/dark.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -337,7 +337,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/metal.svg');
+    background-image:url('/src/assets/metal.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -357,7 +357,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/stone.svg');
+    background-image:url('/src/assets/stone.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -377,7 +377,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/psychic.svg');
+    background-image:url('/src/assets/psychic.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -397,7 +397,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/ground.svg');
+    background-image:url('/src/assets/ground.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -417,7 +417,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/ground.svg');
+    background-image:url('/src/assets/ground.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -437,7 +437,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/poison.svg');
+    background-image:url('/src/assets/poison.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
@@ -458,7 +458,7 @@
     left:0;
     bottom:12px;
     right:0;
-    background-image:url('/flying.svg');
+    background-image:url('/src/assets/flying.svg');
     background-size:auto 100% ;
     background-repeat:no-repeat;
     /* left middle */
