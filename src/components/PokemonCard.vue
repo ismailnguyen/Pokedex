@@ -59,7 +59,7 @@ export default {
       return string && string.charAt(0).toUpperCase() + string.slice(1);
     },
     pad(number) {
-      return number.toString().padStart(3, "0");
+      return number && number.toString().padStart(3, "0");
     },
     viewPokemon(pokemon) {
       this.$emit("viewPokemon", pokemon);

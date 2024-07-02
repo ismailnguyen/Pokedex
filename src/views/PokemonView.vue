@@ -270,7 +270,7 @@ export default {
   },
   methods: {
     pad(number) {
-      return number.toString().padStart(3, "0");
+      return number && number.toString().padStart(3, "0");
     },
     capitalizeFirstLetter: function (string) {
       return string && string.charAt(0).toUpperCase() + string.slice(1);
