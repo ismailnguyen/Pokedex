@@ -82,8 +82,7 @@ export default {
         .then((response) => response.json())
         .then(async (pokemon) => {
           pokemon.spriteUrl = pokemon.sprites.front_default;
-          //pokemon.imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${ this.pad(pokemon.id) }.png`;
-          pokemon.imageUrl = sprites.other['official-artwork'].front_default;
+          pokemon.imageUrl = `/images/sprites/thumbnails/${ this.pad(pokemon.id) }.png`;
 
           return pokemon;
         });
